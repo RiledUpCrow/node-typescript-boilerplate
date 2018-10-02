@@ -1,0 +1,48 @@
+{
+  "name": "node-typescript-boilerplate",
+  "version": "0.1.0",
+  "description": "Node.js + TypeScript Express REST API boilerplate",
+  "main": "build/index.js",
+  "author": "Jakub Sapalski",
+  "license": "ISC",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf ./build",
+    "prebuild": "yarn clean",
+    "build": "tsc",
+    "start": "node --inspect=5858 -r ts-node/register src/index.ts",
+    "dev": "nodemon",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "format": "prettier --write src/**/*.ts test/**/*.ts",
+    "style": "prettier --list-different src/**/*.ts test/**/*.ts",
+    "lint": "tslint src/**/*.ts",
+    "precommit": "yarn style && yarn lint",
+    "prepush": "yarn test && yarn build"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/jest": "^23.3.2",
+    "husky": "^1.1.0",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.4",
+    "prettier": "^1.14.3",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.10.3",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "typescript": "^3.1.1"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/test/**/*.test.ts"
+    ]
+  }
+}
