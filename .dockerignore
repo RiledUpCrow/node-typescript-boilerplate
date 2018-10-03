@@ -6,6 +6,5 @@ test/
 coverage/
 .gitignore
 .prettierrc.json
-nodemon.json
 README.md
 tslint.json

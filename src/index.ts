@@ -8,5 +8,5 @@ app.listen(port, () => console.log(`Server running on ${port}!`));
 app.get('/:value', (req, res) => {
   console.log(`${req.method}: ${req.url}`);
   const str = req.params.value as string;
-  res.send({ message: `Hello ${str}` });
+  res.send({ message: `Hello ${str}!` });
 });
