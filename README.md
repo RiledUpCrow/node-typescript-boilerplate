@@ -102,3 +102,20 @@ The project contains a pre-commit git hook which checks the code with Prettier a
 It also has a pre-push hook which runs all tests and builds the project, so you cannot push broken code to the repository.
 
 You can disable these hooks by adding `--no-verify` flag to your `git commit` or `git push` command.
+
+## Docker
+
+You can build the project as a Docker image with a standard `docker build` command. The commands below let you quickly build and run the example on port 80:
+
+```
+docker build -t node-ts:latest .
+docker run --rm -it -p 80:80/tcp --pid=host node-ts:latest
+```
+
+The server should be available under your Docker machine address, for example:
+
+```
+http://192.168.99.100/World
+```
+
+The container will be removed when you press `Ctrl+C`.
