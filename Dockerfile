@@ -10,6 +10,7 @@ RUN npm ci
 
 # Building the project
 COPY tsconfig.json nodemon.json tslint.json .prettierrc.json ./
+COPY test ./test
 COPY src ./src
 RUN npm run build
 

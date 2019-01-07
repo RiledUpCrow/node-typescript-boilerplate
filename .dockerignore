@@ -2,7 +2,6 @@
 node_modules/
 .vscode/
 build/
-test/
 coverage/
 .gitignore
 README.md
