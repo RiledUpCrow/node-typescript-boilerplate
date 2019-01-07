@@ -9,6 +9,7 @@ This is a boilerplate for Node with Express server using TypeScript. It includes
 - Code formatting with `prettier`
 - Code linting with `tslint`
 - Git hooks with `husky`
+- CI with GitHub Actions
 
 ## Requirements
 
@@ -117,3 +118,7 @@ http://localhost/hello/World
 ```
 
 The container will be removed when you press `Ctrl+C`.
+
+## Actions
+
+The project contains a simple GitHub Action Workflow which uses the Docker images to build and run various tests on the image. You can extend it to release and deploy your applications.
