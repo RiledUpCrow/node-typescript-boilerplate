@@ -1,8 +1,9 @@
 workflow "CI" {
   on = "push"
   resolves = [
-    "Test",
+    "Style",
     "Lint",
+    "Test",
   ]
 }
 
