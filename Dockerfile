@@ -1,27 +1,34 @@
 # Build container
-FROM node:10 as build
-WORKDIR /usr/src/app
+FROM node:10.15 as dev
+ENV NODE_ENV development \
+    PORT 8080
+WORKDIR /app
 
 # Installing all dependencies
-COPY package.json yarn.lock ./
-RUN yarn install
+COPY package.json package-lock.json ./
+RUN npm ci
 
 # Building the project
+COPY tsconfig.json nodemon.json tslint.json .prettierrc.json ./
+COPY test ./test
 COPY src ./src
-COPY tsconfig.json ./
-RUN yarn build
+RUN npm run build
+
 
 # Server container
-FROM node:10
-WORKDIR /usr/src/app
+FROM node:10.15
+WORKDIR /app
+ENV NODE_ENV production \
+    PORT 80
 
 # Installing production dependencies
-COPY --from=build /usr/src/app/package.json /usr/src/app/yarn.lock ./
-RUN yarn install --production
+COPY --from=dev /app/package.json /app/package-lock.json ./
+RUN npm install
 
 # Preparing built code to run
-COPY --from=build /usr/src/app/build ./build
-ENV PORT 80
+COPY --from=dev /app/build ./build
+
+# Application port
 EXPOSE ${PORT}
 
 CMD [ "node", "build/index.js" ]

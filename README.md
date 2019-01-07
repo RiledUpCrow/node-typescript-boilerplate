@@ -23,6 +23,7 @@ Configure default build and test tasks by pasting this into `.vscode/tasks.json`
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Start",
       "type": "npm",
       "script": "dev",
       "group": {
@@ -31,6 +32,7 @@ Configure default build and test tasks by pasting this into `.vscode/tasks.json`
       }
     },
     {
+      "label": "Test",
       "type": "npm",
       "script": "test:watch",
       "group": {
@@ -66,42 +68,38 @@ Configure the debugger to attach to a running Node process by pasting this into 
 Start a development server with automatic restart:
 
 ```
-yarn dev
+npm run dev
 ```
 
 Build the project:
 
 ```
-yarn build
+npm run build
 ```
 
 Test the project (optionally with coverage or in watch mode):
 
 ```
-yarn test
-yarn test:coverage
-yarn test:watch
+npm run test
+npm run test:coverage
+npm run test:watch
 ```
 
 Format the code with Prettier:
 
 ```
-yarn format
+npm run format
 ```
 
 Lint the code with TSLint:
 
 ```
-yarn lint
+npm run lint
 ```
 
 ## Git hooks
 
-The project contains a pre-commit git hook which checks the code with Prettier and TSLint, so you cannot commit low quality code.
-
-It also has a pre-push hook which runs all tests and builds the project, so you cannot push broken code to the repository.
-
-You can disable these hooks by adding `--no-verify` flag to your `git commit` or `git push` command.
+The project contains a pre-commit git hook which checks the code with Prettier and a pre-push hook for checking TSLint. You can disable these hooks by adding `--no-verify` flag to your `git commit` or `git push` command.
 
 ## Docker
 
@@ -109,13 +107,13 @@ You can build the project as a Docker image with a standard `docker build` comma
 
 ```
 docker build -t node-ts:latest .
-docker run --rm -it -p 80:80/tcp --pid=host node-ts:latest
+docker run --rm -it -p 80:8080 --pid=host node-ts:latest
 ```
 
 The server should be available under your Docker machine address, for example:
 
 ```
-http://192.168.99.100/World
+http://localhost/hello/World
 ```
 
 The container will be removed when you press `Ctrl+C`.
