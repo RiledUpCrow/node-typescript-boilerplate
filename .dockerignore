@@ -5,6 +5,4 @@ build/
 test/
 coverage/
 .gitignore
-.prettierrc.json
 README.md
-tslint.json

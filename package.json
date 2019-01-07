@@ -8,10 +8,10 @@
   "private": true,
   "scripts": {
     "clean": "rimraf ./build",
-    "prebuild": "yarn clean",
+    "prebuild": "npm run clean",
     "build": "tsc",
-    "start": "node --inspect=0.0.0.0:5858 -r ts-node/register src/index.ts",
-    "dev": "nodemon --legacy-watch",
+    "start": "node --inspect=localhost:5858 --nolazy -r ts-node/register src/index.ts",
+    "dev": "nodemon --watch",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
@@ -45,8 +45,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn style && yarn lint",
-      "pre-push": "yarn test && yarn build"
+      "pre-commit": "npm run style",
+      "pre-push": "npm run lint"
     }
   }
 }
